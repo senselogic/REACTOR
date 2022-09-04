@@ -1,0 +1,151 @@
+<html>
+    <body style="font-size: 0.5rem">
+        <div style="display: flex">
+            <xmp id="code">
+function LinkList(
+    )
+{
+    let linkArray = [
+        { url: "https://www.youtube.com/watch?v=YP9nrR-ym3c", name: "Night Drive" },
+        { url: "https://www.youtube.com/watch?v=6TEGPexTqr4", name: "Nightlapse" },
+        { url: "https://www.youtube.com/watch?v=ByS1Rlk_AL8", name: "Journey" },
+        { url: "https://www.youtube.com/watch?v=wgw7uImdPjw", name: "Retrowave Touch" }
+        ];
+
+    let linkCount = linkArray.length;
+
+    return (
+        <>
+            {#if linkCount > 0}
+                <p>Link count : {linkCount}.</p>
+            {/if}
+
+            {#if linkCount == 1}
+                <p>{linkCount} link.</p>
+            {:else}
+                <p>{linkCount} links.</p>
+            {/if}
+
+            {#if linkCount == 0}
+                <p>No link.</p>
+            {:else}
+                {#if linkCount == 1}
+                    <p>One link.</p>
+                {:else}
+                    {#if linkCount == 2}
+                        <p>Two links.</p>
+                    {:else}
+                        <p>Many links.</p>
+                    {/if}
+                {/if}
+            {/if}
+
+            {#if linkCount == 0}
+                <p>No link.</p>
+            {:else if linkCount == 1}
+                <p>One link.</p>
+            {:else if linkCount == 2}
+                <p>Two links.</p>
+            {:else}
+                <p>Many links.</p>
+            {/if}
+
+            <ul>
+                {#for link of linkArray}
+                    <li>
+                        <a target="_blank" href="{link.url}">
+                            {link.name}
+                        </a>
+                    </li>
+                {/for}
+            </ul>
+            <ul>
+                {#for { url, name}, linkIndex of linkArray}
+                    <li>
+                        <a target="_blank" href="https://www.youtube.com/watch?v={url}">
+                            {linkIndex + 1} : { name}
+                        </a>
+                    </li>
+                {/for}
+            </ul>
+        </>
+        );
+}
+        </xmp>
+        <xmp id="target-code">
+function LinkList(
+    )
+{
+    let linkArray = [
+        { url: "https://www.youtube.com/watch?v=YP9nrR-ym3c", name: "Night Drive" },
+        { url: "https://www.youtube.com/watch?v=6TEGPexTqr4", name: "Nightlapse" },
+        { url: "https://www.youtube.com/watch?v=ByS1Rlk_AL8", name: "Journey" },
+        { url: "https://www.youtube.com/watch?v=wgw7uImdPjw", name: "Retrowave Touch" }
+        ];
+
+    let linkCount = linkArray.length;
+
+    return (
+        <>
+            (linkCount > 0)?(
+                <p>Link count : {linkCount}.</p>
+            ):null
+
+            (linkCount == 1)?(
+                <p>{linkCount} link.</p>
+            ):(
+                <p>{linkCount} links.</p>
+            )
+
+            (linkCount == 0)?(
+                <p>No link.</p>
+            ):(
+                (linkCount == 1)?(
+                    <p>One link.</p>
+                ):(
+                    (linkCount == 2)?(
+                        <p>Two links.</p>
+                    ):(
+                        <p>Many links.</p>
+                    )
+                )
+            )
+
+            (linkCount == 0)?(
+                <p>No link.</p>
+            ):((linkCount == 1)?(
+                <p>One link.</p>
+            ):((linkCount == 2)?(
+                <p>Two links.</p>
+            ):(
+                <p>Many links.</p>
+            ))))
+
+            <ul>
+                (linkArray).map((link)=>{
+                    <li>
+                        <a target="_blank" href="{link.url}">
+                            {link.name}
+                        </a>
+                    </li>
+                })
+            </ul>
+            <ul>
+                (linkArray).map(({ url, name }, linkIndex)=>{
+                    <li>
+                        <a target="_blank" href="https://www.youtube.com/watch?v={url}">
+                            {linkIndex + 1} : {name}
+                        </a>
+                    </li>
+                })
+            </ul>
+        </>
+        );
+}
+            </xmp>
+            <xmp id="processed-code">
+            </xmp>
+        </div>
+        <script type="module" src="./test.js" crossorigin="anonymous"></script>
+    </body>
+</html>
