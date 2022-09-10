@@ -92,10 +92,6 @@ function FrameworkList()
 }
 ```
 
-## Limitations
-
-The expression parser only handles a subset of the JavaScript syntax.
-
 ## Version
 
 0.1
