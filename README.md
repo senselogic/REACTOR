@@ -16,11 +16,9 @@ Provides a shared syntax for React and Solid :
 ## Sample
 
 ```js
-function Counter(
-    props
-    )
+function Counter()
 {
-    let $count = props.count;
+    let $count = 0;
 
     function increment()
     {
