@@ -22,7 +22,10 @@
         "react",
         "preprocessor"
     ],
-    "dependencies": {},
+    "dependencies": {
+        "immer": "^9.0.15",
+        "zustand": "^4.1.1"
+    },
     "devDependencies": {
         "baretest": "^2.0.0"
     }
