@@ -2,7 +2,7 @@
 
 # Flow
 
-Unified component preprocessor.
+Functional component preprocessor.
 
 ## Features
 
