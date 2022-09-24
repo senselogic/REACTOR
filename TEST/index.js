@@ -100,4 +100,5 @@ let server = http.createServer(
     }
     );
 
+console.log( 'Visit localhost:8080' );
 server.listen( 8080 );
