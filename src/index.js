@@ -637,17 +637,21 @@ function isBlankCharacter(
 
 // ~~
 
-export default function getProcessedCode(
+function getProcessedCode(
     code,
-    options
+    framework
     )
 {
-    if ( options === undefined )
+    if ( framework === undefined )
     {
-        let options = this.getOptions();
+        framework = 'react';
     }
 
-    let processor = new Processor( options.framework );
+    let processor = new Processor( framework );
 
     return processor.getProcessedCode( code );
 }
+
+// -- EXPORTS
+
+module.exports = getProcessedCode;

@@ -1,21 +1,6 @@
-![](https://github.com/senselogic/REACTOR/blob/master/LOGO/reactor.png)
+import { render } from "solid-js/web";
+import { createSignal } from "solid-js";
 
-# Reactor
-
-Functional component preprocessor for React and Solid.
-
-## Features
-
-Provides a common Svelte-like syntax for :
-
-*   state declarations
-*   state assignments
-*   conditional statements
-*   iterative statements
-
-## Sample
-
-```js
 function Counter()
 {
     let $count = 0;
@@ -80,9 +65,9 @@ function FrameworkList()
 
             <ul>
                 {#for {name, url}, index of frameworkArray}
-                    <li key={index}>
+                    <li>
                         <a target="_blank" href={url}>
-                            {index + 1} : {name}
+                            {index() + 1} : {name}
                         </a>
                     </li>
                 {/for}
@@ -90,62 +75,34 @@ function FrameworkList()
         </>
         );
 }
-```
 
-## Installation
-
-**package.json**
-```
+function Person(
+    props
+    )
 {
-  "devDependencies": {
-    "senselogic-reactor": "^0.1.6"
-  },
+    let $name = `${props.firstName} ${props.lastName}`;
+
+    return (
+        <p>
+            {$name}
+        </p>
+        );
 }
-```
 
-**webpack.config.js**
+function App(
+    props
+    )
+{
+    return (
+        <>
+            <Counter/>
+            <FrameworkList/>
+            <Person firstName="Jack" lastName="Sparrow"/>
+        </>
+        );
+}
 
-```
-const path = require('path');
-const webpack = require('webpack');
-
-module.exports = {
-  entry: path.resolve(__dirname, './src/index.js'),
-  module: {
-    rules: [
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: ['babel-loader', 'senselogic-reactor'],
-      },
-    ],
-  },
-  resolve: {
-    extensions: ['*', '.js', '.jsx'],
-  },
-  output: {
-    path: path.resolve(__dirname, './dist'),
-    filename: 'bundle.js',
-  },
-  plugins: [new webpack.HotModuleReplacementPlugin()],
-  devServer: {
-    static: path.resolve(__dirname, './dist'),
-    hot: true,
-  },
-};
-
-``
-
-## Version
-
-0.1
-
-## Author
-
-Eric Pelzer (ecstatic.coder@gmail.com).
-
-## License
-
-This project is licensed under the GNU Lesser General Public License version 3.
-
-See the [LICENSE.md](LICENSE.md) file for details.
+render(
+    () => <App/>,
+    document.getElementById( 'app' )
+    );
