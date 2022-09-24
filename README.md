@@ -1,17 +1,17 @@
-![](https://github.com/senselogic/FLOW/blob/master/LOGO/flow.png)
+![](https://github.com/senselogic/REACTOR/blob/master/LOGO/reactor.png)
 
-# Flow
+# Reactor
 
-Functional component preprocessor.
+Functional component preprocessor for React and Solid.
 
 ## Features
 
-Provides a shared syntax for React and Solid :
+Provides a common Svelte-like syntax for :
 
-*   State declarations.
-*   State assignments.
-*   Conditional statements.
-*   Iterative statements.
+*   state declarations
+*   state assignments
+*   conditional statements
+*   iterative statements
 
 ## Sample
 
@@ -91,6 +91,35 @@ function FrameworkList()
         );
 }
 ```
+
+## Installation
+
+package.json
+
+```
+{
+  "devDependencies": {
+    "senselogic-reactor": "^0.1.0"
+  },
+}
+```
+
+webpack.config.js
+
+
+```
+{
+  module: {
+    loaders: [
+      {
+        test: /\.js$/,
+        loader: "senselogic-reactor"
+      }
+    ],
+    ...
+  }
+}
+``
 
 ## Version
 
