@@ -580,22 +580,16 @@ class Processor
 
                 code
                     = code.replace(
-                        /(.?)\$([a-z]\w*)/g,
+                        /\$([a-z]\w*)/g,
                         (
                             match,
-                            prefix,
                             variableName
                             ) =>
                         {
-                            if ( prefix === '\\' )
-                            {
-                                return variableName;
-                            }
-                            else if ( isVariableNameMap.has( variableName ) )
+                            if ( isVariableNameMap.has( variableName ) )
                             {
                                 return (
-                                    prefix
-                                    + variableName
+                                    variableName
                                     + variableSuffix
                                     );
                             }

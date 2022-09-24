@@ -2,7 +2,7 @@
 
 const fs = require( 'fs' );
 const http = require( 'http' );
-const reactor = require( '../src/index.js' );
+const getProcessedCode = require( '../src/index.js' );
 
 // -- FUNCTIONS
 
@@ -32,14 +32,14 @@ function compareCode(
 
 let reactSourceCode = fs.readFileSync( 'REACT/sourceCode.js', { encoding: 'utf8', flag: 'r' } );
 let reactTargetCode = fs.readFileSync( 'REACT/targetCode.js', { encoding: 'utf8', flag: 'r' } );
-let reactProcessedCode = reactor( reactSourceCode, 'react' );
+let reactProcessedCode = getProcessedCode( reactSourceCode, 'react' );
 
 compareCode( reactTargetCode, reactProcessedCode );
 fs.writeFileSync( 'REACT/processedCode.js', reactProcessedCode );
 
 let solidSourceCode = fs.readFileSync( 'SOLID/sourceCode.js', { encoding: 'utf8', flag: 'r' } );
 let solidTargetCode = fs.readFileSync( 'SOLID/targetCode.js', { encoding: 'utf8', flag: 'r' } );
-let solidProcessedCode = reactor( solidSourceCode, 'solid' );
+let solidProcessedCode = getProcessedCode( solidSourceCode, 'solid' );
 
 compareCode( solidTargetCode, solidProcessedCode );
 fs.writeFileSync( 'SOLID/processedCode.js', solidProcessedCode );
