@@ -44,7 +44,7 @@ function compileCode(
     let folderName = framework.toUpperCase();
     let sourceCode = fs.readFileSync( `${folderName}/sourceCode.js`, { encoding: 'utf8', flag: 'r' } );
     let targetCode = fs.readFileSync( `${folderName}/targetCode.js`, { encoding: 'utf8', flag: 'r' } );
-    let processedCode = getProcessedCode( sourceCode, framework );
+    let processedCode = getProcessedCode( sourceCode, { framework } );
     fs.writeFileSync( `${folderName}/processedCode.js`, processedCode );
 
     compareCode( targetCode, processedCode );

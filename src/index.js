@@ -38,7 +38,7 @@ class Processor
     // -- CONSTRUCTORS
 
     constructor(
-        framework = 'react'
+        { framework = 'react' } = {}
         )
     {
         this.framework = framework;
@@ -713,15 +713,18 @@ function isBlankCharacter(
 
 function getProcessedCode(
     code,
-    framework
+    options
     )
 {
-    if ( framework === undefined )
+    if ( options === undefined )
     {
-        framework = 'react';
+        if ( this.getOptions !== undefined )
+        {
+            options = this.getOptions();
+        }
     }
 
-    let processor = new Processor( framework );
+    let processor = new Processor( options );
 
     return processor.getProcessedCode( code );
 }
