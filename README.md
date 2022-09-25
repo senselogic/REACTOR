@@ -340,13 +340,17 @@ function FrameworkList()
 
 ### Options
 
-**framework** : `react`, `preact` or `solid`
+```js
+{
+    framework: 'react', 'preact' or 'solid'
+}
+```
 
 ### Example
 
 **webpack.config.js**
 
-```
+```js
 const path = require('path');
 const webpack = require('webpack');
 
