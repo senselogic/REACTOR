@@ -8,8 +8,8 @@ Functional component preprocessor for React, Preact and Solid.
 
 Provides a unified syntax for :
 
-*   state variable declaration and assignment
-*   conditions and iterations
+*   state variable declaration, assignment and access;
+*   conditions and iterations.
 
 ## Sample
 
