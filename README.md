@@ -338,7 +338,11 @@ function FrameworkList()
 
 ## Configuration
 
-### React
+### Options
+
+*   **framework** : `react`, `preact` or `solid`
+
+### Example
 
 **webpack.config.js**
 
@@ -353,7 +357,7 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ['babel-loader', 'senselogic-reactor'],
+        use: ['babel-loader', { loader: 'senselogic-reactor', options: { framework: 'react' } }],
       },
     ],
   },
