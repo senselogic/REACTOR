@@ -1,7 +1,7 @@
 {
     "name": "senselogic-reactor",
     "description": "Functional component preprocessor for React, Preact and Solid.",
-    "version": "0.1.9",
+    "version": "0.1.10",
     "author": "Eric Pelzer <ecstatic.coder@gmail.com>",
     "license": "LGPL-3.0-only",
     "repository": {

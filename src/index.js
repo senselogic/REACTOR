@@ -564,7 +564,7 @@ class Processor
 
     // ~~
 
-    getVariableAccessCode(
+    getVariableEvaluationCode(
         variableName
         )
     {
@@ -671,7 +671,7 @@ class Processor
                         {
                             if ( isVariableNameMap.has( variableName ) )
                             {
-                                return this.getVariableAccessCode( variableName );
+                                return this.getVariableEvaluationCode( variableName );
                             }
                             else
                             {
