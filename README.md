@@ -384,7 +384,7 @@ module.exports = {
 
 *   Statements are translated without grammatical checking.
 *   State variables must be declared in the file in which they are used.
-*   In Preact state code, the `$` prefix must be omitted from JSX evaluations : `{count}`.
+*   The `$` prefix must be omitted from Preact JSX evaluations : `{count}`.
 
 ## Version
 
