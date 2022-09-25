@@ -340,7 +340,7 @@ function FrameworkList()
 
 ### Options
 
-*   **framework** : `react`, `preact` or `solid`
+**framework** : `react`, `preact` or `solid`
 
 ### Example
 
