@@ -328,7 +328,7 @@ function FrameworkList()
 ## Installation
 
 **package.json**
-```
+```js
 {
   "devDependencies": {
     "senselogic-reactor": "^0.1.10"
