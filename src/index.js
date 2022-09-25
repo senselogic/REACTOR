@@ -292,22 +292,22 @@ class Processor
                             {
                                 if ( ofCharacterIndex > 0 )
                                 {
-                                    if ( this.framework === 'react' )
+                                    if ( this.framework === 'solid' )
                                     {
                                         processedCommand
-                                            = ( ( this.commandArray.length === 0 ) ? '{' : '' )
-                                              + '('
+                                            = '<For each={'
                                               + command.slice( ofCharacterIndex + 3, -1 )
-                                              + ').map(('
+                                              + '}>{('
                                               + command.slice( 6, ofCharacterIndex - 1 )
                                               + ')=>';
                                     }
                                     else
                                     {
                                         processedCommand
-                                            = '<For each={'
+                                            = ( ( this.commandArray.length === 0 ) ? '{' : '' )
+                                              + '('
                                               + command.slice( ofCharacterIndex + 3, -1 )
-                                              + '}>{('
+                                              + ').map(('
                                               + command.slice( 6, ofCharacterIndex - 1 )
                                               + ')=>';
                                     }
@@ -323,16 +323,16 @@ class Processor
                             {
                                 if ( this.isCommand( 'for' ) )
                                 {
-                                    if ( this.framework === 'react' )
+                                    if ( this.framework === 'solid' )
                                     {
                                         processedCommand
-                                            = ')'
-                                              + ( ( this.commandArray.length === 1 ) ? '}' : '' );
+                                            = '}</For>';
                                     }
                                     else
                                     {
                                         processedCommand
-                                            = '}</For>';
+                                            = ')'
+                                              + ( ( this.commandArray.length === 1 ) ? '}' : '' );
                                     }
 
                                     this.popCommand();
@@ -477,6 +477,113 @@ class Processor
 
     // ~~
 
+    getVariableCreationCode(
+        prefix,
+        variableName,
+        variableValue,
+        suffix
+        )
+    {
+        if ( this.framework === 'solid' )
+        {
+            return (
+                prefix
+                + 'const ['
+                + variableName
+                + ', set'
+                + variableName.slice( 0, 1 ).toUpperCase()
+                + variableName.slice( 1 )
+                + '] = createSignal('
+                + variableValue
+                + ')'
+                + suffix
+                );
+        }
+        else if ( this.framework === 'preact' )
+        {
+            return (
+                prefix
+                + 'const '
+                + variableName
+                + ' = signal('
+                + variableValue
+                + ')'
+                + suffix
+                );
+        }
+        else
+        {
+            return (
+                prefix
+                + 'const ['
+                + variableName
+                + ', set'
+                + variableName.slice( 0, 1 ).toUpperCase()
+                + variableName.slice( 1 )
+                + '] = useState('
+                + variableValue
+                + ')'
+                + suffix
+                );
+        }
+    }
+
+    // ~~
+
+    getVariableAssignmentCode(
+        prefix,
+        variableName,
+        variableValue,
+        suffix
+        )
+    {
+        if ( this.framework === 'preact' )
+        {
+            return (
+                prefix
+                + variableName
+                + '.value = '
+                + variableValue
+                + suffix
+                );
+        }
+        else
+        {
+            return (
+                prefix
+                + 'set'
+                + variableName.slice( 0, 1 ).toUpperCase()
+                + variableName.slice( 1 )
+                + '('
+                + variableValue
+                + ')'
+                + suffix
+                );
+        }
+    }
+
+    // ~~
+
+    getVariableAccessCode(
+        variableName
+        )
+    {
+        if ( this.framework === 'solid' )
+        {
+            return variableName + '()';
+        }
+        else if ( this.framework === 'preact' )
+        {
+            return variableName + '.value';
+        }
+        else
+        {
+            return variableName;
+        }
+    }
+
+    // ~~
+
     replaceVariables(
         code
         )
@@ -490,7 +597,6 @@ class Processor
         }
         else
         {
-            let createStateFunction = ( ( this.framework === 'react' ) ? 'useState' : 'createSignal' );
             let isVariableNameMap = new Map();
 
             do
@@ -514,20 +620,7 @@ class Processor
 
                             isVariableNameMap.set( variableName, true );
 
-                            return (
-                                prefix
-                                + "const ["
-                                + variableName
-                                + ", set"
-                                + variableName.slice( 0, 1 ).toUpperCase()
-                                + variableName.slice( 1 )
-                                + '] = '
-                                + createStateFunction
-                                + '('
-                                + variableValue
-                                + ')'
-                                + suffix
-                                );
+                            return this.getVariableCreationCode( prefix, variableName, variableValue, suffix );
                         }
                         );
             }
@@ -556,16 +649,8 @@ class Processor
                                     let variableValue = this.getValue( suffix );
                                     suffix = suffix.slice( variableValue.length );
 
-                                    return (
-                                        prefix
-                                        + "set"
-                                        + variableName.slice( 0, 1 ).toUpperCase()
-                                        + variableName.slice( 1 )
-                                        + '('
-                                        + variableValue
-                                        + ')'
-                                        + suffix
-                                        );
+                                    return this.getVariableAssignmentCode( prefix, variableName, variableValue, suffix );
+
                                 }
                                 else
                                 {
@@ -575,8 +660,6 @@ class Processor
                             );
                 }
                 while ( codeHasChanged );
-
-                let variableSuffix = ( ( this.framework === 'react' ) ? '' : '()' );
 
                 code
                     = code.replace(
@@ -588,10 +671,7 @@ class Processor
                         {
                             if ( isVariableNameMap.has( variableName ) )
                             {
-                                return (
-                                    variableName
-                                    + variableSuffix
-                                    );
+                                return this.getVariableAccessCode( variableName );
                             }
                             else
                             {

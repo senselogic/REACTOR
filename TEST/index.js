@@ -17,7 +17,12 @@ function compareCode(
     targetLineArray.forEach(
         function ( targetLine, lineIndex )
         {
-            let processedLine = processedLineArray[ lineIndex ];
+            let processedLine = '';
+
+            if ( lineIndex < processedLineArray.length )
+            {
+                processedLine = processedLineArray[ lineIndex ];
+            }
 
             if ( processedLine.trimEnd() !== targetLine.trimEnd() )
             {
@@ -28,21 +33,30 @@ function compareCode(
         );
 }
 
+// ~~
+
+function compileCode(
+    framework
+    )
+{
+    console.log( `Compiling ${framework} code...` );
+
+    let folderName = framework.toUpperCase();
+    let sourceCode = fs.readFileSync( `${folderName}/sourceCode.js`, { encoding: 'utf8', flag: 'r' } );
+    let targetCode = fs.readFileSync( `${folderName}/targetCode.js`, { encoding: 'utf8', flag: 'r' } );
+    let processedCode = getProcessedCode( sourceCode, framework );
+    fs.writeFileSync( `${folderName}/processedCode.js`, processedCode );
+
+    compareCode( targetCode, processedCode );
+
+    return [ sourceCode, targetCode, processedCode ];
+}
+
 // -- STATEMENTS
 
-let reactSourceCode = fs.readFileSync( 'REACT/sourceCode.js', { encoding: 'utf8', flag: 'r' } );
-let reactTargetCode = fs.readFileSync( 'REACT/targetCode.js', { encoding: 'utf8', flag: 'r' } );
-let reactProcessedCode = getProcessedCode( reactSourceCode, 'react' );
-
-compareCode( reactTargetCode, reactProcessedCode );
-fs.writeFileSync( 'REACT/processedCode.js', reactProcessedCode );
-
-let solidSourceCode = fs.readFileSync( 'SOLID/sourceCode.js', { encoding: 'utf8', flag: 'r' } );
-let solidTargetCode = fs.readFileSync( 'SOLID/targetCode.js', { encoding: 'utf8', flag: 'r' } );
-let solidProcessedCode = getProcessedCode( solidSourceCode, 'solid' );
-
-compareCode( solidTargetCode, solidProcessedCode );
-fs.writeFileSync( 'SOLID/processedCode.js', solidProcessedCode );
+let [ reactSourceCode, reactTargetCode, reactProcessedCode ] = compileCode( 'react' );
+let [ preactSourceCode, preactTargetCode, preactProcessedCode ] = compileCode( 'preact' );
+let [ solidSourceCode, solidTargetCode, solidProcessedCode ] = compileCode( 'solid' );
 
 let server = http.createServer(
     function ( request, result )
@@ -73,26 +87,19 @@ let server = http.createServer(
                         }
                     </style>
                     <div style="display: flex">
-                        <xmp>
-                            ${reactSourceCode}
-                        </xmp>
-                        <xmp>
-                            ${reactTargetCode}
-                        </xmp>
-                        <xmp>
-                            ${reactProcessedCode}
-                        </xmp>
+                        <xmp>${reactSourceCode}</xmp>
+                        <xmp>${reactTargetCode}</xmp>
+                        <xmp>${reactProcessedCode}</xmp>
                     </div>
                     <div style="display: flex">
-                        <xmp>
-                            ${solidSourceCode}
-                        </xmp>
-                        <xmp>
-                            ${solidTargetCode}
-                        </xmp>
-                        <xmp>
-                            ${solidProcessedCode}
-                        </xmp>
+                        <xmp>${preactSourceCode}</xmp>
+                        <xmp>${preactTargetCode}</xmp>
+                        <xmp>${preactProcessedCode}</xmp>
+                    </div>
+                    <div style="display: flex">
+                        <xmp>${solidSourceCode}</xmp>
+                        <xmp>${solidTargetCode}</xmp>
+                        <xmp>${solidProcessedCode}</xmp>
                     </div>
                 </body>
             </html>`
