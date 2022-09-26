@@ -35,9 +35,9 @@ function FrameworkList()
 {
     let frameworkArray = [
         { name: 'React', url: 'https://reactjs.org' },
+        { name: 'Preact', url: 'https://preactjs.com' },
         { name: 'Solid', url: 'https://solidjs.com' },
-        { name: 'Svelte', url: 'https://svelte.dev' },
-        { name: 'Vue', url: 'https://vuejs.org' }
+        { name: 'Svelte', url: 'https://svelte.dev' }
         ];
     let frameworkCount = frameworkArray.length;
 
@@ -113,9 +113,9 @@ function FrameworkList()
 {
     let frameworkArray = [
         { name: 'React', url: 'https://reactjs.org' },
+        { name: 'Preact', url: 'https://preactjs.com' },
         { name: 'Solid', url: 'https://solidjs.com' },
-        { name: 'Svelte', url: 'https://svelte.dev' },
-        { name: 'Vue', url: 'https://vuejs.org' }
+        { name: 'Svelte', url: 'https://svelte.dev' }
         ];
     let frameworkCount = frameworkArray.length;
 
@@ -191,9 +191,9 @@ function FrameworkList()
 {
     let frameworkArray = [
         { name: 'React', url: 'https://reactjs.org' },
+        { name: 'Preact', url: 'https://preactjs.com' },
         { name: 'Solid', url: 'https://solidjs.com' },
-        { name: 'Svelte', url: 'https://svelte.dev' },
-        { name: 'Vue', url: 'https://vuejs.org' }
+        { name: 'Svelte', url: 'https://svelte.dev' }
         ];
     let frameworkCount = frameworkArray.length;
 
@@ -269,9 +269,9 @@ function FrameworkList()
 {
     let frameworkArray = [
         { name: 'React', url: 'https://reactjs.org' },
+        { name: 'Preact', url: 'https://preactjs.com' },
         { name: 'Solid', url: 'https://solidjs.com' },
-        { name: 'Svelte', url: 'https://svelte.dev' },
-        { name: 'Vue', url: 'https://vuejs.org' }
+        { name: 'Svelte', url: 'https://svelte.dev' }
         ];
     let frameworkCount = frameworkArray.length;
 
@@ -382,7 +382,8 @@ module.exports = {
 
 ## Limitations
 
-*   Statements are translated without grammatical checking.
+*   Reactor statements are translated without any grammatical checking.
+*   The ternary operator is also used for simple `if` statements.
 *   State variables must be declared in the file in which they are used.
 
 ## Version

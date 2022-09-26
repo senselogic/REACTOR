@@ -21,9 +21,9 @@ function FrameworkList()
 {
     let frameworkArray = [
         { name: 'React', url: 'https://reactjs.org' },
+        { name: 'Preact', url: 'https://preactjs.com' },
         { name: 'Solid', url: 'https://solidjs.com' },
-        { name: 'Svelte', url: 'https://svelte.dev' },
-        { name: 'Vue', url: 'https://vuejs.org' }
+        { name: 'Svelte', url: 'https://svelte.dev' }
         ];
     let frameworkCount = frameworkArray.length;
 
