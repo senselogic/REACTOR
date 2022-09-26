@@ -1,5 +1,4 @@
 import { render } from 'preact';
-import { useState } from 'preact/hooks';
 import { useSignal } from "@preact/signals";
 
 function Counter()
