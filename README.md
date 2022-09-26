@@ -6,7 +6,7 @@ Functional component preprocessor for React, Preact and Solid.
 
 ## Features
 
-Provides a unified Svelte-like syntax for :
+Allows to use a common Svelte-like syntax for :
 
 *   state variable declarations, assignments and evaluations;
 *   conditions and array iterations in JSX code.
@@ -173,7 +173,7 @@ function FrameworkList()
 ```js
 function Counter()
 {
-    const count = signal(0);
+    const count = useSignal(0);
 
     function increment()
     {
@@ -182,7 +182,7 @@ function Counter()
 
     return (
         <button type="button" onClick={increment}>
-            {count}
+            {count.value}
         </button>
         );
 }
@@ -331,7 +331,7 @@ function FrameworkList()
 ```js
 {
   "devDependencies": {
-    "senselogic-reactor": "^0.1.10"
+    "senselogic-reactor": "^0.1.11"
   },
 }
 ```
@@ -384,7 +384,6 @@ module.exports = {
 
 *   Statements are translated without grammatical checking.
 *   State variables must be declared in the file in which they are used.
-*   The `$` prefix must be omitted from Preact JSX evaluations : `{count}`.
 
 ## Version
 

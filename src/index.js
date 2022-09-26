@@ -505,7 +505,7 @@ class Processor
                 prefix
                 + 'const '
                 + variableName
-                + ' = signal('
+                + ' = useSignal('
                 + variableValue
                 + ')'
                 + suffix
@@ -565,20 +565,21 @@ class Processor
     // ~~
 
     getVariableEvaluationCode(
+        prefix,
         variableName
         )
     {
         if ( this.framework === 'solid' )
         {
-            return variableName + '()';
+            return prefix + variableName + '()';
         }
         else if ( this.framework === 'preact' )
         {
-            return variableName + '.value';
+            return prefix + variableName + '.value';
         }
         else
         {
-            return variableName;
+            return prefix + variableName;
         }
     }
 
@@ -634,7 +635,7 @@ class Processor
 
                     code
                         = code.replace(
-                            /([^¨])\$([a-z]\w*)\s*=\s*(.*)/m,
+                            /(\W)\$([a-z]\w*)\s*=\s*(.*)/m,
                             (
                                 match,
                                 prefix,
@@ -663,15 +664,16 @@ class Processor
 
                 code
                     = code.replace(
-                        /\$([a-z]\w*)/g,
+                        /(\W)\$([a-z]\w*)/g,
                         (
                             match,
+                            prefix,
                             variableName
                             ) =>
                         {
                             if ( isVariableNameMap.has( variableName ) )
                             {
-                                return this.getVariableEvaluationCode( variableName );
+                                return this.getVariableEvaluationCode( prefix, variableName );
                             }
                             else
                             {

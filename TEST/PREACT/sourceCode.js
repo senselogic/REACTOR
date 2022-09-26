@@ -1,6 +1,6 @@
 import { render } from 'preact';
 import { useState } from 'preact/hooks';
-import { signal } from "@preact/signals";
+import { useSignal } from "@preact/signals";
 
 function Counter()
 {
@@ -13,7 +13,7 @@ function Counter()
 
     return (
         <button type="button" onClick={increment}>
-            {count}
+            {$count}
         </button>
         );
 }
@@ -85,7 +85,7 @@ function Person(
 
     return (
         <p>
-            {name}
+            {$name}
         </p>
         );
 }

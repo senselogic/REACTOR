@@ -1,10 +1,10 @@
 import { render } from 'preact';
 import { useState } from 'preact/hooks';
-import { signal } from "@preact/signals";
+import { useSignal } from "@preact/signals";
 
 function Counter()
 {
-    const count = signal(0);
+    const count = useSignal(0);
 
     function increment()
     {
@@ -13,7 +13,7 @@ function Counter()
 
     return (
         <button type="button" onClick={increment}>
-            {count}
+            {count.value}
         </button>
         );
 }
@@ -81,11 +81,11 @@ function Person(
     props
     )
 {
-    const name = signal(`${props.firstName} ${props.lastName}`);
+    const name = useSignal(`${props.firstName} ${props.lastName}`);
 
     return (
         <p>
-            {name}
+            {name.value}
         </p>
         );
 }
