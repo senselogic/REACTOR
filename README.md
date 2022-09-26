@@ -6,7 +6,7 @@ Functional component preprocessor for React, Preact and Solid.
 
 ## Features
 
-Allows to use a common Svelte-like syntax for :
+Allows to use the same Svelte-like syntax in all three frameworks for :
 
 *   state variable declarations, assignments and evaluations;
 *   conditions and array iterations in JSX code.
