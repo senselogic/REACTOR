@@ -104,5 +104,5 @@ function App(
 }
 
 ReactDOM.createRoot(
-    document.querySelector( '#root' )
+    document.getElementById( 'app' )
     ).render( <App/> );

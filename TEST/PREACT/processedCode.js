@@ -104,5 +104,5 @@ function App(
 
 render(
     <App/>,
-    document.querySelector( '#root' )
+    document.getElementById( 'app' )
     );
