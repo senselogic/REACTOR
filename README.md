@@ -423,7 +423,7 @@ export default defineConfig({
 ## Limitations
 
 *   Reactor statements are translated without grammatical checking.
-*   The ternary operator is also used for else-less `if` statements.
+*   The ternary operator is also used for simple `if` statements.
 *   State variables must be declared in the file which uses them.
 
 ## Version
