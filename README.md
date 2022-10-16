@@ -327,7 +327,7 @@ function FrameworkList()
 
 ## Webpack loader
 
-## Options
+### Options
 
 ```js
 {
