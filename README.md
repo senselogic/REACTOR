@@ -380,6 +380,21 @@ module.exports = {
 };
 ```
 
+**vite.config.js**
+
+```js
+import reactor from 'senselogic-reactor-vite';
+import { defineConfig } from 'vite';
+import preact from '@preact/preset-vite';
+
+export default defineConfig({
+    plugins: [
+        reactor( { framework: 'preact', include: './src/**/*.jsx' } ),
+        preact()
+        ]
+    });
+```
+
 ## Limitations
 
 *   Reactor statements are translated without any grammatical checking.
