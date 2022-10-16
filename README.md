@@ -340,15 +340,24 @@ function FrameworkList()
 
 ### Webpack
 
-#### Options
-
 ```js
 {
     framework: 'react'    // or 'preact' or 'solid'
 }
 ```
 
-#### Example
+### Vite
+
+```js
+{
+    framework: 'react'    // or 'preact' or 'solid'
+    include: './src/**/*.jsx'
+}
+```
+
+#### Examples
+
+**webpack.config.js**
 
 ```js
 const path = require('path');
@@ -379,19 +388,6 @@ module.exports = {
   },
 };
 ```
-
-### Vite
-
-#### Options
-
-```js
-{
-    framework: 'react'    // or 'preact' or 'solid'
-    include: './src/**/*.jsx'
-}
-```
-
-#### Example
 
 **vite.config.js**
 
