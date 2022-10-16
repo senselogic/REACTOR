@@ -341,7 +341,7 @@ function FrameworkList()
 ```js
 {
   "devDependencies": {
-    "senselogic-reactor": "^0.1.11"
+    "senselogic-reactor": "^0.1.12"
   },
 }
 ```
