@@ -338,17 +338,13 @@ function FrameworkList()
 
 ## Configuration
 
-### Options
+### Webpack
 
 ```js
 {
-    framework: 'react', 'preact' or 'solid'
+    framework: 'react'    // or 'preact' or 'solid'
 }
 ```
-
-### Example
-
-**webpack.config.js**
 
 ```js
 const path = require('path');
@@ -380,6 +376,15 @@ module.exports = {
 };
 ```
 
+### Vite
+
+```js
+{
+    framework: 'react'    // or 'preact' or 'solid'
+    include: './src/**/*.jsx'
+}
+```
+
 **vite.config.js**
 
 ```js
@@ -397,9 +402,9 @@ export default defineConfig({
 
 ## Limitations
 
-*   Reactor statements are translated without any grammatical checking.
-*   The ternary operator is also used for simple `if` statements.
-*   State variables must be declared in the file in which they are used.
+*   Reactor statements are translated without grammatical checking.
+*   The ternary operator is also used for else-less `if` statements.
+*   State variables must be declared in the file which uses them.
 
 ## Version
 
