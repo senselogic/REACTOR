@@ -1,12 +1,13 @@
 {
-    "name": "senselogic-reactor",
-    "description": "Functional component preprocessor for React, Preact and Solid.",
-    "version": "0.1.12",
+    "name": "senselogic-reactor-vite-loader",
+    "description": "Reactor vite loader.",
+    "version": "0.1.6",
     "author": "Eric Pelzer <ecstatic.coder@gmail.com>",
     "license": "LGPL-3.0-only",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/senselogic/REACTOR.git"
+        "url": "git+https://github.com/senselogic/REACTOR.git",
+        "directory": "PLUGIN/ROLLUP"
     },
     "bugs": {
         "url": "https://github.com/senselogic/REACTOR/issues"
@@ -14,13 +15,6 @@
     "homepage": "https://github.com/senselogic/REACTOR",
     "type": "commonjs",
     "main": "src/index.cjs",
-    "module": "src/index.mjs",
-    "exports": {
-        ".": {
-            "require": "./src/index.cjs",
-            "import": "./src/index.mjs"
-        }
-    },
     "files": [
         "src/",
         "README.md"
@@ -29,6 +23,11 @@
         "react",
         "preact",
         "solid",
-        "preprocessor"
-    ]
+        "preprocessor",
+        "vite",
+        "loader"
+    ],
+    "dependencies": {
+        "@rollup/pluginutils": "^4.2.1"
+    }
 }
