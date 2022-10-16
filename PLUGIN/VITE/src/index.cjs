@@ -13,7 +13,7 @@ function reactorViteLoader(
     let filter = createFilter( include, exclude );
 
     return {
-        name: 'senselogic-reactor-vite-loader',
+        name: 'senselogic-reactor-vite',
         enforce: 'pre',
 
         async load(
