@@ -413,8 +413,8 @@ module.exports = {
 **vite.config.js**
 
 ```js
-import reactor from 'senselogic-reactor-vite';
 import { defineConfig } from 'vite';
+import reactor from 'senselogic-reactor-vite';
 import preact from '@preact/preset-vite';
 
 export default defineConfig({
