@@ -346,7 +346,7 @@ function FrameworkList()
 }
 ```
 
-### Sample
+### Configuration
 
 **webpack.config.js**
 
@@ -403,7 +403,7 @@ module.exports = {
 }
 ```
 
-### Sample
+### Configuration
 
 **vite.config.js**
 
