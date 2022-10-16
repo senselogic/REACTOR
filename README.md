@@ -325,7 +325,17 @@ function FrameworkList()
 }
 ```
 
-## Installation
+## Webpack loader
+
+## Options
+
+```js
+{
+    framework: 'react'    // or 'preact' or 'solid'
+}
+```
+
+### Installation
 
 **package.json**
 ```js
@@ -336,26 +346,7 @@ function FrameworkList()
 }
 ```
 
-## Configuration
-
-### Webpack
-
-```js
-{
-    framework: 'react'    // or 'preact' or 'solid'
-}
-```
-
-### Vite
-
-```js
-{
-    framework: 'react'    // or 'preact' or 'solid'
-    include: './src/**/*.jsx'
-}
-```
-
-#### Examples
+### Sample
 
 **webpack.config.js**
 
@@ -388,6 +379,31 @@ module.exports = {
   },
 };
 ```
+
+## Vite loader
+
+### Options
+
+```js
+{
+    framework: 'react'    // or 'preact' or 'solid'
+    include: './src/**/*.jsx'
+}
+```
+
+### Installation
+
+**package.json**
+```js
+{
+  "devDependencies": {
+    "senselogic-reactor": "^0.1.12",
+    "senselogic-reactor-vite": "^0.1.7"
+  },
+}
+```
+
+### Sample
 
 **vite.config.js**
 
