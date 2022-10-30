@@ -1,9 +1,10 @@
 import { render } from "solid-js/web";
-import { createSignal } from "solid-js";
+import { createSignal, createComputed } from "solid-js";
 
 function Counter()
 {
     let $count = 0;
+    let $doubleCount := $count * 2;
 
     function increment()
     {
@@ -12,7 +13,7 @@ function Counter()
 
     return (
         <button type="button" onClick={increment}>
-            {$count}
+            {$count} / {$doubleCount}
         </button>
         );
 }

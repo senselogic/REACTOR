@@ -530,6 +530,41 @@ class Processor
 
     // ~~
 
+    getComputedVariableCreationCode(
+        prefix,
+        variableName,
+        variableValue,
+        suffix
+        )
+    {
+        if ( this.framework === 'preact' )
+        {
+            return (
+                prefix
+                + 'const '
+                + variableName
+                + ' = useComputed(() => '
+                + variableValue
+                + ')'
+                + suffix
+                );
+        }
+        else
+        {
+            return (
+                prefix
+                + 'const '
+                + variableName
+                + ' = createComputed(() => '
+                + variableValue
+                + ')'
+                + suffix
+                );
+        }
+    }
+
+    // ~~
+
     getVariableAssignmentCode(
         prefix,
         variableName,
@@ -626,6 +661,37 @@ class Processor
                         );
             }
             while ( codeHasChanged );
+
+            if ( this.framework === 'preact'
+                 || this.framework === 'solid' )
+            {
+                do
+                {
+                    codeHasChanged = false;
+
+                    code
+                        = code.replace(
+                            /(\W)let\s+\$([a-z]\w*)\s*:=\s*(.*)/m,
+                            (
+                                match,
+                                prefix,
+                                variableName,
+                                suffix
+                                ) =>
+                            {
+                                codeHasChanged = true;
+
+                                let variableValue = this.getValue( suffix );
+                                suffix = suffix.slice( variableValue.length );
+
+                                isVariableNameMap.set( variableName, true );
+
+                                return this.getComputedVariableCreationCode( prefix, variableName, variableValue, suffix );
+                            }
+                            );
+                }
+                while ( codeHasChanged );
+            }
 
             if ( isVariableNameMap.size > 0 )
             {

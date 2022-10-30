@@ -1,9 +1,10 @@
 import { render } from 'preact';
-import { useSignal } from "@preact/signals";
+import { useSignal, useComputed } from "@preact/signals";
 
 function Counter()
 {
     const count = useSignal(0);
+    const doubleCount = useComputed(() => count.value * 2);
 
     function increment()
     {
@@ -12,7 +13,7 @@ function Counter()
 
     return (
         <button type="button" onClick={increment}>
-            {count.value}
+            {count.value} / {doubleCount.value}
         </button>
         );
 }

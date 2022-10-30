@@ -2,7 +2,7 @@
 
 const fs = require( 'fs' );
 const http = require( 'http' );
-const getProcessedCode = require( '../src/index.js' );
+const getProcessedCode = require( '../src/index.cjs' );
 
 // -- FUNCTIONS
 

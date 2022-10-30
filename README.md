@@ -18,11 +18,11 @@ Allows to use a Svelte-like syntax for :
 
 ## Sample
 
-**Reactor code**
 ```js
 function Counter()
 {
     let $count = 0;
+    let $doubleCount := $count * 2;
 
     function increment()
     {
@@ -31,7 +31,7 @@ function Counter()
 
     return (
         <button type="button" onClick={increment}>
-            {$count}
+            {$count} / {$doubleCount}
         </button>
         );
 }
@@ -90,240 +90,6 @@ function FrameworkList()
                         </a>
                     </li>
                 {/for}
-            </ul>
-        </>
-        );
-}
-```
-
-**React code**
-```js
-function Counter()
-{
-    const [count, setCount] = useState(0);
-
-    function increment()
-    {
-        setCount(count + 1);
-    }
-
-    return (
-        <button type="button" onClick={increment}>
-            {count}
-        </button>
-        );
-}
-
-function FrameworkList()
-{
-    let frameworkArray = [
-        { name: 'React', url: 'https://reactjs.org' },
-        { name: 'Preact', url: 'https://preactjs.com' },
-        { name: 'Solid', url: 'https://solidjs.com' },
-        { name: 'Svelte', url: 'https://svelte.dev' }
-        ];
-    let frameworkCount = frameworkArray.length;
-
-    return (
-        <>
-            {(frameworkCount > 0)?(
-                <p>Framework count : {frameworkCount}.</p>
-            ):false}
-
-            {(frameworkCount == 1)?(
-                <p>{frameworkCount} framework.</p>
-            ):(
-                <p>{frameworkCount} frameworks.</p>
-            )}
-
-            {(frameworkCount == 0)?(
-                <p>No framework.</p>
-            ):(
-                (frameworkCount == 1)?(
-                    <p>One framework.</p>
-                ):(
-                    (frameworkCount == 2)?(
-                        <p>Two frameworks.</p>
-                    ):(
-                        <p>Many frameworks.</p>
-                    )
-                )
-            )}
-
-            {(frameworkCount == 0)?(
-                <p>No framework.</p>
-            ):((frameworkCount == 1)?(
-                <p>One framework.</p>
-            ):((frameworkCount == 2)?(
-                <p>Two frameworks.</p>
-            ):(
-                <p>Many frameworks.</p>
-            )))}
-
-            <ul>
-                {(frameworkArray).map(({name, url}, index)=>
-                    <li key={index}>
-                        <a target="_blank" href={url}>
-                            {index + 1} : {name}
-                        </a>
-                    </li>
-                )}
-            </ul>
-        </>
-        );
-}
-```
-
-**Preact code**
-```js
-function Counter()
-{
-    const count = useSignal(0);
-
-    function increment()
-    {
-        count.value = count.value + 1;
-    }
-
-    return (
-        <button type="button" onClick={increment}>
-            {count.value}
-        </button>
-        );
-}
-
-function FrameworkList()
-{
-    let frameworkArray = [
-        { name: 'React', url: 'https://reactjs.org' },
-        { name: 'Preact', url: 'https://preactjs.com' },
-        { name: 'Solid', url: 'https://solidjs.com' },
-        { name: 'Svelte', url: 'https://svelte.dev' }
-        ];
-    let frameworkCount = frameworkArray.length;
-
-    return (
-        <>
-            {(frameworkCount > 0)?(
-                <p>Framework count : {frameworkCount}.</p>
-            ):false}
-
-            {(frameworkCount == 1)?(
-                <p>{frameworkCount} framework.</p>
-            ):(
-                <p>{frameworkCount} frameworks.</p>
-            )}
-
-            {(frameworkCount == 0)?(
-                <p>No framework.</p>
-            ):(
-                (frameworkCount == 1)?(
-                    <p>One framework.</p>
-                ):(
-                    (frameworkCount == 2)?(
-                        <p>Two frameworks.</p>
-                    ):(
-                        <p>Many frameworks.</p>
-                    )
-                )
-            )}
-
-            {(frameworkCount == 0)?(
-                <p>No framework.</p>
-            ):((frameworkCount == 1)?(
-                <p>One framework.</p>
-            ):((frameworkCount == 2)?(
-                <p>Two frameworks.</p>
-            ):(
-                <p>Many frameworks.</p>
-            )))}
-
-            <ul>
-                {(frameworkArray).map(({name, url}, index)=>
-                    <li key={index}>
-                        <a target="_blank" href={url}>
-                            {index + 1} : {name}
-                        </a>
-                    </li>
-                )}
-            </ul>
-        </>
-        );
-}
-```
-
-**Solid code**
-```js
-function Counter()
-{
-    const [count, setCount] = createSignal(0);
-
-    function increment()
-    {
-        setCount(count() + 1);
-    }
-
-    return (
-        <button type="button" onClick={increment}>
-            {count()}
-        </button>
-        );
-}
-
-function FrameworkList()
-{
-    let frameworkArray = [
-        { name: 'React', url: 'https://reactjs.org' },
-        { name: 'Preact', url: 'https://preactjs.com' },
-        { name: 'Solid', url: 'https://solidjs.com' },
-        { name: 'Svelte', url: 'https://svelte.dev' }
-        ];
-    let frameworkCount = frameworkArray.length;
-
-    return (
-        <>
-            {(frameworkCount > 0)?(
-                <p>Framework count : {frameworkCount}.</p>
-            ):false}
-
-            {(frameworkCount == 1)?(
-                <p>{frameworkCount} framework.</p>
-            ):(
-                <p>{frameworkCount} frameworks.</p>
-            )}
-
-            {(frameworkCount == 0)?(
-                <p>No framework.</p>
-            ):(
-                (frameworkCount == 1)?(
-                    <p>One framework.</p>
-                ):(
-                    (frameworkCount == 2)?(
-                        <p>Two frameworks.</p>
-                    ):(
-                        <p>Many frameworks.</p>
-                    )
-                )
-            )}
-
-            {(frameworkCount == 0)?(
-                <p>No framework.</p>
-            ):((frameworkCount == 1)?(
-                <p>One framework.</p>
-            ):((frameworkCount == 2)?(
-                <p>Two frameworks.</p>
-            ):(
-                <p>Many frameworks.</p>
-            )))}
-
-            <ul>
-                <For each={frameworkArray}>{({name, url}, index)=>
-                    <li>
-                        <a target="_blank" href={url}>
-                            {index() + 1} : {name}
-                        </a>
-                    </li>
-                }</For>
             </ul>
         </>
         );
@@ -428,8 +194,8 @@ export default defineConfig({
 ## Limitations
 
 *   Reactor statements are translated without grammatical checking.
-*   The ternary operator is also used for simple `if` statements.
-*   State variables must be declared in the file which uses them.
+*   State variables must be declared before using them.
+*   Computed values are only available for Preact and Solid.
 
 ## Version
 
