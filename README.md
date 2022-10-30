@@ -112,7 +112,7 @@ function FrameworkList()
 ```js
 {
   "devDependencies": {
-    "senselogic-reactor": "^0.1.12"
+    "senselogic-reactor": "^0.1.14"
   },
 }
 ```
@@ -168,8 +168,8 @@ module.exports = {
 ```js
 {
   "devDependencies": {
-    "senselogic-reactor": "^0.1.12",
-    "senselogic-reactor-vite": "^0.1.7"
+    "senselogic-reactor": "^0.1.14",
+    "senselogic-reactor-vite": "^0.1.10"
   },
 }
 ```
