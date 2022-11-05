@@ -27,6 +27,7 @@ function Counter()
     function increment()
     {
         $count = $count + 1;
+        $count = $count + 1;
     }
 
     return (
@@ -112,7 +113,7 @@ function FrameworkList()
 ```js
 {
   "devDependencies": {
-    "senselogic-reactor": "^0.1.14"
+    "senselogic-reactor": "^0.1.15"
   },
 }
 ```
@@ -168,7 +169,7 @@ module.exports = {
 ```js
 {
   "devDependencies": {
-    "senselogic-reactor": "^0.1.14",
+    "senselogic-reactor": "^0.1.15",
     "senselogic-reactor-vite": "^0.1.10"
   },
 }

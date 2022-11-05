@@ -551,15 +551,7 @@ class Processor
         }
         else
         {
-            return (
-                prefix
-                + 'const '
-                + variableName
-                + ' = createComputed(() => '
-                + variableValue
-                + ')'
-                + suffix
-                );
+            throw new Error( "Invalid framework : " + this.framework );
         }
     }
 
@@ -572,17 +564,7 @@ class Processor
         suffix
         )
     {
-        if ( this.framework === 'preact' )
-        {
-            return (
-                prefix
-                + variableName
-                + '.value = '
-                + variableValue
-                + suffix
-                );
-        }
-        else
+        if ( this.framework === 'solid' )
         {
             return (
                 prefix
@@ -594,6 +576,35 @@ class Processor
                 + ')'
                 + suffix
                 );
+        }
+        else if ( this.framework === 'preact' )
+        {
+            return (
+                prefix
+                + variableName
+                + '.value = '
+                + variableValue
+                + suffix
+                );
+        }
+        else if ( this.framework === 'react' )
+        {
+            return (
+                prefix
+                + 'set'
+                + variableName.slice( 0, 1 ).toUpperCase()
+                + variableName.slice( 1 )
+                + '('
+                + variableName
+                + ' => '
+                + variableValue
+                + ')'
+                + suffix
+                );
+        }
+        else
+        {
+            throw new Error( "Invalid framework : " + this.framework );
         }
     }
 
@@ -612,9 +623,13 @@ class Processor
         {
             return prefix + variableName + '.value';
         }
-        else
+        else if ( this.framework === 'react' )
         {
             return prefix + variableName;
+        }
+        else
+        {
+            throw new Error( "Invalid framework : " + this.framework );
         }
     }
 
@@ -662,8 +677,7 @@ class Processor
             }
             while ( codeHasChanged );
 
-            if ( this.framework === 'preact'
-                 || this.framework === 'solid' )
+            if ( this.framework === 'preact' )
             {
                 do
                 {

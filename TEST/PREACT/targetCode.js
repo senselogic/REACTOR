@@ -9,6 +9,7 @@ function Counter()
     function increment()
     {
         count.value = count.value + 1;
+        count.value = count.value + 1;
     }
 
     return (

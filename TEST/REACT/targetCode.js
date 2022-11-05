@@ -8,7 +8,8 @@ function Counter()
 
     function increment()
     {
-        setCount(count + 1);
+        setCount(count => count + 1);
+        setCount(count => count + 1);
     }
 
     return (
